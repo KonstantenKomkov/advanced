@@ -2,16 +2,16 @@
 
 namespace backend\controllers;
 
-use common\models\Post;
-use backend\models\PostSearch;
+use common\models\Access;
+use backend\models\AccessSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PostController implements the CRUD actions for Post model.
+ * AccessController implements the CRUD actions for Access model.
  */
-class PostController extends Controller
+class AccessController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class PostController extends Controller
     }
 
     /**
-     * Lists all Post models.
+     * Lists all Access models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new PostSearch();
+        $searchModel = new AccessSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,30 +48,30 @@ class PostController extends Controller
     }
 
     /**
-     * Displays a single Post model.
-     * @param int $postId ID
+     * Displays a single Access model.
+     * @param int $tokenId Token ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($postId)
+    public function actionView($tokenId)
     {
         return $this->render('view', [
-            'model' => $this->findModel($postId),
+            'model' => $this->findModel($tokenId),
         ]);
     }
 
     /**
-     * Creates a new Post model.
+     * Creates a new Access model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Post();
+        $model = new Access();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'postId' => $model->postId]);
+                return $this->redirect(['view', 'tokenId' => $model->tokenId]);
             }
         } else {
             $model->loadDefaultValues();
@@ -83,18 +83,18 @@ class PostController extends Controller
     }
 
     /**
-     * Updates an existing Post model.
+     * Updates an existing Access model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $postId ID
+     * @param int $tokenId Token ID
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($postId)
+    public function actionUpdate($tokenId)
     {
-        $model = $this->findModel($postId);
+        $model = $this->findModel($tokenId);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'postId' => $model->postId]);
+            return $this->redirect(['view', 'tokenId' => $model->tokenId]);
         }
 
         return $this->render('update', [
@@ -103,29 +103,29 @@ class PostController extends Controller
     }
 
     /**
-     * Deletes an existing Post model.
+     * Deletes an existing Access model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $postId ID
+     * @param int $tokenId Token ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($postId)
+    public function actionDelete($tokenId)
     {
-        $this->findModel($postId)->delete();
+        $this->findModel($tokenId)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Post model based on its primary key value.
+     * Finds the Access model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $postId ID
-     * @return Post the loaded model
+     * @param int $tokenId Token ID
+     * @return Access the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($postId)
+    protected function findModel($tokenId)
     {
-        if (($model = Post::findOne(['postId' => $postId])) !== null) {
+        if (($model = Access::findOne(['tokenId' => $tokenId])) !== null) {
             return $model;
         }
 

@@ -47,18 +47,6 @@ class m221116_193406_create_post_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `{{%user}}`
-        $this->dropForeignKey(
-            '{{%fk-post-userId}}',
-            '{{%post}}'
-        );
-
-        // drops index for column `userId`
-        $this->dropIndex(
-            '{{%idx-post-userId}}',
-            '{{%post}}'
-        );
-
         $this->dropTable('{{%post}}');
     }
 }

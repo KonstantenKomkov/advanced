@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use common\models\AccessToken;
-use common\models\AccessTokenSearch;
+use backend\models\AccessTokenSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

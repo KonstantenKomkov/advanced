@@ -1,15 +1,15 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Post;
+use common\models\User;
 
 /**
- * PostSearch represents the model behind the search form of `common\models\Post`.
+ * UserSearch represents the model behind the search form of `common\models\User`.
  */
-class PostSearch extends Post
+class UserSearch extends User
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class PostSearch extends Post
     public function rules()
     {
         return [
-            [['postId', 'userId'], 'integer'],
-            [['title', 'text', 'createdAt', 'updatedAt'], 'safe'],
+            [['userId'], 'integer'],
+            [['name', 'middleName', 'surname', 'email', 'phone', 'createdAt', 'updatedAt'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class PostSearch extends Post
      */
     public function search($params)
     {
-        $query = Post::find();
+        $query = User::find();
 
         // add conditions that should always apply here
 
@@ -58,14 +58,16 @@ class PostSearch extends Post
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'postId' => $this->postId,
             'userId' => $this->userId,
             'createdAt' => $this->createdAt,
             'updatedAt' => $this->updatedAt,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'text', $this->text]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'middleName', $this->middleName])
+            ->andFilterWhere(['like', 'surname', $this->surname])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'phone', $this->phone]);
 
         return $dataProvider;
     }

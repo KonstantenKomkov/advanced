@@ -7,10 +7,10 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var common\models\PostSearch $searchModel */
+/** @var backend\models\PostSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Посты';
+$this->title = 'Posts';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">

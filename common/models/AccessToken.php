@@ -13,16 +13,19 @@ namespace common\models;
  *
  * @property User $user
  */
-class AccessToken extends BaseAccesstoken {
-
+class AccessToken extends BaseAccessToken
+{
+    /**
+     * {@inheritdoc}
+     */
     public function attributeLabels()
     {
         return [
-            'tokenId' => 'ID',
-            'userId' => 'UserID',
-            'accessToken' => 'Токен',
-            'createdAt' => 'Дата создания',
-            'updatedAt' => 'Дата редактирования',
+            'tokenId' => 'Token ID',
+            'userId' => 'User ID',
+            'accessToken' => 'Access Token',
+            'createdAt' => 'Created At',
+            'updatedAt' => 'Updated At',
         ];
     }
 
@@ -33,5 +36,4 @@ class AccessToken extends BaseAccesstoken {
     {
         return array_merge([], parent::rules());
     }
-
 }

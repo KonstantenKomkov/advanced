@@ -46,18 +46,6 @@ class m221116_193352_create_accessToken_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `{{%user}}`
-        $this->dropForeignKey(
-            '{{%fk-accessToken-userId}}',
-            '{{%accessToken}}'
-        );
-
-        // drops index for column `userId`
-        $this->dropIndex(
-            '{{%idx-accessToken-userId}}',
-            '{{%accessToken}}'
-        );
-
         $this->dropTable('{{%accessToken}}');
     }
 }
