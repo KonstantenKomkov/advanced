@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var backend\models\AccessTokenSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Access Tokens';
+$this->title = 'Токены доступа';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="access-token-index">

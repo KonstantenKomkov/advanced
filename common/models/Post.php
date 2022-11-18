@@ -2,6 +2,10 @@
 
 namespace common\models;
 
+use Carbon\Carbon;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+
 /**
  * This is the model class for table "post".
  *
@@ -39,4 +43,23 @@ class Post extends BasePost {
         return array_merge([], parent::rules());
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors(): array
+    {
+        return [
+            'blameable' => [
+                'class'              => BlameableBehavior::class,
+                'createdByAttribute' => 'createdAt',
+                'updatedByAttribute' => 'updatedAt',
+            ],
+            'timestamp' => [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value' => Carbon::now($tz = 3),
+            ],
+        ];
+    }
 }
